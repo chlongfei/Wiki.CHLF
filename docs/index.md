@@ -12,5 +12,8 @@ If something doesn't look right, let me know <a href="mailto:wm@chlf.dev">wm@chl
 
 It is not here nor there. 
 
-It's built using <a href="https://www.mkdocs.org/">MkDocs</a> hotsed on <a href="https://pages.github.com/">GitHub Pages</a>!
+It's built using <a href="https://www.mkdocs.org/">MkDocs</a> hotsed on <a href="https://pages.github.com/">GitHub Pages</a>.
+
+![buildState](https://github.com/chlongfei/Wiki.CHLF/actions/workflows/build.yml/badge.svg)
+
 
