@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://wiki.chlf.dev/mkdocs/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>MkDocs - Wiki.CHLF</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MkDocs";
+        var mkdocs_page_input_path = "mkdocs.md";
+        var mkdocs_page_url = "/mkdocs/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Wiki.CHLF
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">MkDocs</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pre-req">Pre-Req</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-new-wiki">Creating new Wiki</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Wiki.CHLF</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>MkDocs</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mkdocs">MkDocs</h1>
+<p>"MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file."</p>
+<p><a href="https://www.mkdocs.org/">https://www.mkdocs.org/</a></p>
+<h2 id="pre-req">Pre-Req</h2>
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li>
+<p>recent version of Python and pip</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Ubuntu</strong> comes with a version of <strong>Python</strong>, so only <strong>pip</strong> needed to be installed. Check the version of Python installed with <code>python --version</code>.</p>
+</div>
+</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="language-sh">$ pip install mkdocs
+</code></pre>
+<h3 id="creating-new-wiki">Creating new Wiki</h3>
+<pre><code class="language-sh">$ mkdocs new &lt;project-name&gt;
+</code></pre>
+<p><code>mkdocs</code> will create a new project named <code>&lt;project-name&gt;</code> current directory. <code>cd</code>-ing into that directory shows the below starter structure.</p>
+<pre><code class="language-sh">.
+|-- mkdocs.yml
++-- docs/
+|   +-- index.md
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>configuration is handled through the <code>mkdocs.yml</code> file, at first it'll look like</p>
+<pre><code class="language-yml">site_name: MkDocs
+</code></pre>
+<p><code>site_name</code> is equivilant to the <code>&lt;title&gt;</code> tag in html, it defines the name of the website along with the heading that is displayed on page.</p>
+<p><strong>Additional Useful Parameters</strong></p>
+<p><code>site_url</code> defines the url that the sites will be accessible by.</p>
+<p><code>nav</code> defines the navigation on the site, each page is then listed in points nested under in a key-value style defining <code>Name:pagefile.md</code></p>
+<h2 id="deployment">Deployment</h2>
+<p>For this site, it is deployed using <a href="https://pages.github.com/">GitHub Pages</a>. Using the command <code>$ mkdocs build</code> mkdocs generates a <code>site</code> directory in the project root where resides the static rendering of the wiki.</p>
+<p>For best experience, the static site is pushed to it's own dedicated branch called <code>gh-pages</code> using <code>git subtree push --prefix site origin gh-pages</code>. This pushes only the <code>site</code> directory to the <code>gh-pages</code> branch.</p>
+<p>From GitHub repo, under <code>Settings &gt; Pages &gt; Build and deployment</code> we indicate we want the <code>Source</code> to be <code>Deploy from a branch</code> and the <code>Branch</code> to be <code>gh-pages/(root)</code>.</p>
+<p>A custom domain can also be configured tot his page.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Custom domains will need to be verified via CNAME by GitHub before GitHub will accept it. Useful information about that can be found <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">here</a>.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
