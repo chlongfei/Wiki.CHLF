@@ -1,4 +1,0 @@
-jobs:
-  build-wiki:
-    steps:
-      - run: mkdocs build
