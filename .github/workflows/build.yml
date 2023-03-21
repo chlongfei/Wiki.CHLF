@@ -1,4 +1,7 @@
+name: build-wiki
+on: [push]
 jobs:
   build-wiki:
+    runs-on: ubuntu-latest
     steps:
       - run: mkdocs build
