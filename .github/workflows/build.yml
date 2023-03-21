@@ -4,4 +4,8 @@ jobs:
   build-wiki:
     runs-on: ubuntu-latest
     steps:
+      - run: apt update
+      - run: apt install pip
+      - run: pip install mkdocs
+      - run: cd wiki
       - run: mkdocs build
