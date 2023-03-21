@@ -1,0 +1,6 @@
+site_name: Wiki.CHLF
+site_url: https://wiki.chlf.dev
+nav:
+  - Home: index.md
+  - About: about.md
+theme: readthedocs
