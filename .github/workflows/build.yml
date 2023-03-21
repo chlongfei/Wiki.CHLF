@@ -1,0 +1,10 @@
+name: build-mkdocs
+on: [push]
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - apt update
+    - apt install pip -y
+    - pip install mkdocs
+    - cd wiki
+    - mkdocs build
