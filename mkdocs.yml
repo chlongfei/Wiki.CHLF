@@ -1,8 +1,13 @@
 site_name: Wiki.CHLF
 site_url: https://wiki.chlf.dev
+site_description: A collection of useful information.
+site_author: LChen
+copyright: Wiki.CHLF © 2023 I don't care, play nice. | <a href="/misc/policy/">Policies and Stuff</a>
+
 nav:
   - Home: index.md
   - MkDocs: mkdocs.md
+
 theme: readthedocs
 markdown_extensions:
   - admonition
