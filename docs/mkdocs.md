@@ -47,11 +47,39 @@ site_name: MkDocs
 ## Deployment
 For this site, it is deployed using <a href="https://pages.github.com/">GitHub Pages</a>. Using the command `$ mkdocs build` mkdocs generates a `site` directory in the project root where resides the static rendering of the wiki.
 
-For best experience, the static site is pushed to it's own dedicated branch called `gh-pages` using `git subtree push --prefix site origin gh-pages`. This pushes only the `site` directory to the `gh-pages` branch.
+### Auto Deployment with GitHub Workflows
+Credit to <a href="https://blog.elmah.io/author/thomas/">Thomas Ardal</a> on <a href="blog.elmah.io">elmah.io</a> for the below workflow yml file that allowed for auto deployment into with GitHub workflows. 
 
-From GitHub repo, under `Settings > Pages > Build and deployment` we indicate we want the `Source` to be `Deploy from a branch` and the `Branch` to be `gh-pages/(root)`.
+```yml
+name: build
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs
+      - run: mkdocs gh-deploy --force --clean --verbose
 
-A custom domain can also be configured tot his page.
+```
+Above configuration is placed inside `.github/workflows/build.yml` and committed into the project `main` branch. GitHub will pick it up automatically and run whenever a new commit is pushed to the branch.
+
+The GitHub workflow runs the `mkdocs gh-deploy --force --clean --verbose` command in their environment where it'll build the wiki and copy it into the `gh-pages` branch of the project.
+
+Aftwards, GitHub pages takes over and deployes the newly committed static files to your page.
+
+#### **Permissions**
+An issue that occured during initial deployment was that the `github-actions[bot]` was unable to performactions on the branches in the repository. This was resolved through settings the Workflow permissions under `Settings > Code and automation > Actions > General > Workflow permissions`, setting that to **Read and write permissions** resolved that issue. 
 
 !!! Note
     Custom domains will need to be verified via CNAME by GitHub before GitHub will accept it. Useful information about that can be found <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">here</a>.
+
+<!-- Author / Footer -->
+---
+<div  style="text-align: right; font-size:small; color:grey">LChen - March 21, 2023</div>
