@@ -108,7 +108,7 @@ END RequestId: e50d6889-d036-4ea3-98b2-c8d37919a5c8
 REPORT RequestId: e50d6889-d036-4ea3-98b2-c8d37919a5c8	Duration: 1.41 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 36 MB	Init Duration: 99.36 ms
 
 Request ID
-exxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+e50d6889-d036-4ea3-98b2-c8d37919a5c8
 
 ```
 

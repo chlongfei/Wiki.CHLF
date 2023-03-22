@@ -6,6 +6,7 @@ copyright: Wiki.CHLF © 2023 I don't care, play nice. | <a href="/misc/policy/">
 
 nav:
   - Home: index.md
+  - Cloud: cloud/cloud.md
   - MkDocs: mkdocs.md
 
 theme: readthedocs
