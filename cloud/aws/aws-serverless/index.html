@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="LChen" /><link rel="canonical" href="https://wiki.chlf.dev/cloud/aws/aws-serverless/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>AWS Lambda Serverless Functions - Wiki.CHLF</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "AWS Lambda Serverless Functions";
+        var mkdocs_page_input_path = "cloud/aws/aws-serverless.md";
+        var mkdocs_page_url = "/cloud/aws/aws-serverless/";
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Wiki.CHLF
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../cloud/">Cloud</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../mkdocs/">MkDocs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Wiki.CHLF</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>AWS Lambda Serverless Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="aws-lambda-serverless-functions">AWS Lambda Serverless Functions</h1>
+<p>AWS Lambda is a compute service allowing for code to be ran without provisioning or managing server instances. Running on highly available compute infrastructure it takes on all the tasks of managing the compute resources required, tasks such as server and OS maintianance, scaling, and logging are all handled without end-user interaction.</p>
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">Supported languages on Lambda</a></p>
+<p><em>The following notes will be writing Lambda functions in Python3.</em></p>
+<h2 id="handler">Handler</h2>
+<p>The handler is the method in the function code that processes events. When function is invoked, the handler method is run by Lambda. </p>
+<p>A response is returned to caller when the handler exist.</p>
+<h3 id="syntax">Syntax</h3>
+<p>The general syntax for a handler function in Python is:</p>
+<pre><code class="language-py">    def handlerName(event, context):
+        ...
+        return someValue
+</code></pre>
+<h3 id="naming">Naming</h3>
+<p>By default, Lambda derives the handler name from the filename and function name. This can be overriden in the console.</p>
+<p>For example:</p>
+<p><strong>handler.py</strong></p>
+<pre><code class="language-py">    def lambdaHandler(event, context):
+        ...
+        return someValue
+</code></pre>
+<p>Auto-derived handler name would be <code>handler.lambdaHandler</code>.</p>
+<h3 id="return-value">Return Value</h3>
+<p>Lambda handlers can optionally return a value. All values returned are serialized into a JSON format.</p>
+<p>Return objects must be serializable into JSON, or else an error will be thrown by Lambda.</p>
+<p>Should the handler not return anything (i.e. a <code>None</code>) Lambda will return <code>null</code>.</p>
+<h2 id="deployment">Deployment</h2>
+<p>Lambda functions are deployed using a <em>deployment package</em> consisting of scripts/compiled programs and their dependencies.</p>
+<h3 id="zip">.zip</h3>
+<p>Building a deployment package with .zip archive can be done with any .zip utility. The archive must contain the <strong>function code</strong> and its <strong>dependencies</strong>.</p>
+<p>If the function only requires the <strong>standard libraries or AWS SDKs</strong>, these are built into the Lambda runtime, and <strong>do not need to be included</strong>.</p>
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-create-package-no-dependency">Deploying wthout dependencies</a></p>
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-create-package-with-dependency">Deploying with dependencies</a></p>
+<h2 id="aws-lambda-context-objects">AWS Lambda Context Objects</h2>
+<p>Lambda has a set of context objects that provide information about the invocation, function, and execution environment. Think of these like environment variables in a traditional server invironment.</p>
+<p>See <a href="https://docs.aws.amazon.com/lambda/latest/dg/python-context.html">Developer Guide</a> for list</p>
+<h2 id="error-handling">Error Handling</h2>
+<p>Should Lambda run into an error, it will return the exception type, message, and HTTP status code indicating cause of error.</p>
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_Errors">List of Invokatable Errors</a></p>
+<h2 id="examples">Examples</h2>
+<h3 id="hello-world">Hello World</h3>
+<p>Here is a simple hello world lambda handler:</p>
+<p><strong>helloWorld.py</strong></p>
+<pre><code class="language-py">    def helloHandler(event, context):
+        return 'Hello World!'
+</code></pre>
+<p>In the Lambda console, <strong>Create function</strong> give the function a name like <code>hello-world</code> and set the <strong>Runtime</strong> to <code>Python 3.9</code>, the rest can be left as is.</p>
+<p>Under <strong>Code</strong> we'll upload <code>helloWorld.zip</code>. </p>
+<p>Lastly under <strong>Runtime settings</strong> rename the handler to be <code>helloWorld.helloHandler</code> and make sure <strong>Runtime</strong> is <code>Python 3.9</code>.</p>
+<h4 id="test">Test</h4>
+<p>In the <strong>Code source</strong> window, select <code>helloWorld.py</code> and click <strong>Test</strong>. Give the test event a name, the rest doesn't matter as this function won't use any parameters, and <strong>Save</strong>.</p>
+<p>Click <strong>Test</strong> again to see results.</p>
+<pre><code>Test Event Name
+test
+
+Response
+&quot;Hello World&quot;
+
+Function Logs
+START RequestId: exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx Version: $LATEST
+END RequestId: exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx
+REPORT RequestId: exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx   Duration: 1.41 ms   Billed Duration: 2 ms   Memory Size: 128 MB Max Memory Used: 36 MB  Init Duration: 99.36 ms
+
+Request ID
+exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx
+
+</code></pre>
+<!-- Author / Footer -->
+<hr />
+<p>References:</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS Lambda?</a></li>
+</ul>
+<hr />
+<div  style="text-align: right; font-size:small; color:grey">LChen - March 21, 2023</div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Wiki.CHLF © 2023 I don't care, play nice. | <a href="/misc/policy/">Policies and Stuff</a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
