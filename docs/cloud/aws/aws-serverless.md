@@ -103,12 +103,12 @@ Response
 "Hello World"
 
 Function Logs
-START RequestId: e50d6889-d036-4ea3-98b2-c8d37919a5c8 Version: $LATEST
-END RequestId: e50d6889-d036-4ea3-98b2-c8d37919a5c8
-REPORT RequestId: e50d6889-d036-4ea3-98b2-c8d37919a5c8	Duration: 1.41 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 36 MB	Init Duration: 99.36 ms
+START RequestId: exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx Version: $LATEST
+END RequestId: exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx
+REPORT RequestId: exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx	Duration: 1.41 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 36 MB	Init Duration: 99.36 ms
 
 Request ID
-e50d6889-d036-4ea3-98b2-c8d37919a5c8
+exxxxxxx-dxxx-4xxx-9xxx-cxxxxxxxxxx
 
 ```
 
